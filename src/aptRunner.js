@@ -20,7 +20,7 @@ async function updatePackages(pkgs) {
     // Handle self-update separately
     if (expanded.includes(PKGS.PKG_UPDATER)) {
       const updaterPkg = PACKAGE_MAP[PKGS.PKG_UPDATER];
-      logger.log(`Self-update detected for ${updaterPkg}`);
+      logger.info(`Self-update detected for ${updaterPkg}`);
 
       // Spawn detached child to update
       const child = spawn("bash", ["-c", `
@@ -50,7 +50,7 @@ async function updatePackages(pkgs) {
     }
 
     const finalCmd = commands.join(" && ");
-    logger.log("Executing:", finalCmd);
+    logger.info("Executing:", finalCmd);
 
     exec(finalCmd, (err, stdout, stderr) => {
       if (err) {
